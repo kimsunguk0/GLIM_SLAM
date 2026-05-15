@@ -1,0 +1,22 @@
+{
+  "gnss": {
+    "gnss_topic": "/gnss_utm_pose",
+
+    // T_world_utm 초기화용 최소 baseline [m]
+    // (시작 후 30m 이상 움직인 뒤에 world<->UTM 정렬 계산)
+    "min_baseline": 10.0,
+
+    // z를 쓸지 여부 (초기엔 false로 두고 xy만 강하게)
+    "use_z": true,
+
+    // GNSS gating: position_covariance 기반
+    // -> std_x, std_y가 0.4m 넘으면 factor 스킵
+    "max_std_xy": 0.4,
+    // z는 안 쓸거라 크게 잡아둠. 나중에 use_z=true 하면 1.0~2.0 정도로.
+    "max_std_z": 1.0,
+
+    // 정보행렬 스케일. info_i = prior_inf_scale_i / var_i
+    // 처음엔 1.0으로 두고, 다리에서 GNSS 영향 더 키우고 싶으면 2~5까지 올려볼 수 있음.
+    "prior_inf_scale": [3.0, 3.0, 1.0]
+  }
+}
