@@ -135,10 +135,5 @@ Offline local VGICP odometry: `2170 frames`, `100% converged`, `mean 7.94 ms`, `
 - Loop closure는 재방문이 있어야 의미 있습니다.
 - 깨진 timestamp/scan은 config로 완전히 복구할 수 없습니다.
 - 실제 주행 EKF는 map-to-ENU alignment를 별도로 맞춰야 합니다.
-
-## Commit
-
-```bash
-git add .
-git commit -m "Add GLIM GNSS odometry mapping and localization pipeline"
-```
+- AT128 LiDAR를 전방 단일 구성으로 운용했기 때문에 측후방 포인트가 부족하여 완전한 360° PCD map 구성에 한계가 있습니다.
+- IMU가 100 Hz로 제한된 환경이라 고속 주행 구간에서 pre-integration 정밀도가 떨어지고, 그에 따라 scan-to-map matching에 미세한 오차가 발생할 수 있습니다.
