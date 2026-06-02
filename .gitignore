@@ -14,6 +14,8 @@ log/
 *.jpg
 *.jpeg
 *.tiff
+!docs/images/*.png
+!docs/images/*.jpg
 *.tum.txt
 
 maps/
