@@ -2,6 +2,22 @@
 
 AT128 LiDAR, MTI IMU, RTK GNSS bag으로 장거리 offline PCD map을 만들고, 그 map 위에서 VGICP localization과 GNSS EKF fusion을 돌리기 위한 ROS2 workspace입니다.
 
+## Result
+
+![Route and Mapping Result](docs/images/result.jpg)
+
+씨사이드파크 ↔ G타워 27 km 구간 주행경로와 GLIM GNSS SLAM 매핑 결과.
+
+## Mapping Result
+
+![GLIM Mapping](docs/images/mapping.png)
+
+GLIM odometry submap trajectory. 시간 순서대로 Blue → Red.
+
+## System Pipeline
+
+![System Architecture](docs/images/system_architecture.png)
+
 ## Why
 
 인천대교처럼 약 20 km 동안 구조가 반복되는 구간은 LiDAR-IMU만으로 scan matching이 퇴화하기 쉽습니다. 단순 parameter tuning이나 mapping 이후 EKF만으로는 이미 깨진 odometry/submap을 살리기 어렵기 때문에, GNSS를 GLIM odometry graph에 직접 넣었습니다.
@@ -99,6 +115,8 @@ Outputs:
 주의: EKF는 map frame과 GNSS ENU frame의 yaw/translation을 자동으로 맞추지 않습니다. 필요하면 `MAP_TO_OUTPUT_X/Y/YAW_DEG`를 넣어야 합니다.
 
 ## Current Metrics
+
+![Localization Metrics](docs/images/localization_metrics.png)
 
 현재 컨테이너에 남아있는 CSV 기준 sanity check입니다.
 
